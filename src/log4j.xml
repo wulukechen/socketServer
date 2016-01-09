@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d %-5p [%t] %C{2} (%F:%L) - %m%n" />
+		</layout>
+	</appender>
+	<appender name="org.hhlog.all" class="org.apache.log4j.RollingFileAppender">
+		<!-- 设置通道ID:org.zblog.all和输出方式：org.apache.log4j.RollingFileAppender -->
+	   <param name="File" value="D:/cards.log" /><!-- 设置File参数：日志输出文件名 -->
+	   <param name="Append" value="false" /><!-- 设置是否在重新启动服务时，在原有日志的基础添加新日志 -->
+	   <param name="MaxBackupIndex" value="10" /> 
+	   <layout class="org.apache.log4j.PatternLayout">
+	       <param name="ConversionPattern" value="%p (%c:%L)- %m%n" /><!-- 设置输出文件项目和格式 -->
+	   </layout>
+	</appender>
+	<logger name="log4j.logger.ssh">
+		<level value="info" />
+	</logger>
+	<logger name="log4j.logger.java.sql.PreparedStatement">
+		<level value="info" />
+	</logger>
+	<logger name="log4j.logger.java.sql.Connection">
+		<level value="info" />
+	</logger>
+	<logger name="log4j.logger.java.sql.Statement">
+		<level value="info" />
+	</logger>
+	<logger name="log4j.logger.java.sql.ResultSet">
+		<level value="info" />
+	</logger>
+
+	<!-- specify the logging level for loggers from other libraries -->
+	<logger name="com.opensymphony">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.apache.struts2">
+		<level value="info" />
+	</logger>
+	<logger name="log4j.logger.org.hibernate.type">
+		<level value="TRACE"></level>
+	</logger>
+	<logger name="log4j.logger.org.hibernate.hql">
+		<level value="DEBUG"></level>
+	</logger>
+	<root>
+		<level value="info" />
+		<!--  appender-ref ref="console" /-->
+		<appender-ref ref="org.hhlog.all" />
+	</root>
+</log4j:configuration>
